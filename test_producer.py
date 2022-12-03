@@ -16,17 +16,22 @@ producer = KafkaProducer(
 )
 
 if __name__ == '__main__':
-    for x in range(100):
-        dummy_message = generate_message()
+
+    actual_day=1
+    limit_actions_per_day=0
+    while True:
+        dummy_message = generate_message(actual_date=actual_day)
 
         print(f'Producting message @ {datetime.now()} | Message = {str(dummy_message)}')
         producer.send('messages', dummy_message)
 
-    time.sleep(100000)
+        time.sleep(2)
 
+        limit_actions_per_day+=1
 
-
-
+        if limit_actions_per_day == 10:
+            limit_actions_per_day = 0
+            actual_day +=1
 
 
 

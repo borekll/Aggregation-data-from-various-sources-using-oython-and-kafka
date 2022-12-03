@@ -8,7 +8,7 @@ user_ids = list(range(1, 101))
 recipient_ids = list(range(1, 101))
 
 
-def generate_message() -> dict:
+def generate_message(actual_date) -> dict:
     random_user_id = random.choice(user_ids)
 
     # Copy the recipients array
@@ -25,7 +25,8 @@ def generate_message() -> dict:
     return {
         'user_id': random_user_id,
         'recipient_id': random_recipient_id,
-        'message': message
+        'message': message,
+        'date' : actual_date #currently an integer for presentation; use data_stamp for real life implementaion
     }
 
 if __name__ == '__main__':
