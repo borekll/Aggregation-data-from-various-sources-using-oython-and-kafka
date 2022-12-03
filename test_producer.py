@@ -2,7 +2,10 @@ import time
 import json
 import random
 from datetime import datetime
-from generate_test_msg import generate_message
+
+from generate_test_msg import  generate_message
+from generate_employee_traffic import generate_traffic
+
 from kafka import KafkaProducer
 
 #-- Messages will be serialized as JSON
@@ -20,10 +23,10 @@ if __name__ == '__main__':
     actual_day=1
     limit_actions_per_day=0
     while True:
-        dummy_message = generate_message(actual_date=actual_day)
+        email_event = generate_message(actual_date=actual_day)
 
-        print(f'Producting message @ {datetime.now()} | Message = {str(dummy_message)}')
-        producer.send('messages', dummy_message)
+        print(f'Producting message @ {datetime.now()} | Message = {str(email_event)}')
+        producer.send('messages', email_event)
 
         time.sleep(2)
 
