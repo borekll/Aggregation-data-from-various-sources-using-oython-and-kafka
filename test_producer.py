@@ -3,7 +3,7 @@ import json
 import random
 from datetime import datetime
 
-from generate_test_msg import  generate_message
+from generate_test_msg import generate_message
 from generate_employee_traffic import generate_traffic
 
 from kafka import KafkaProducer
@@ -25,8 +25,15 @@ if __name__ == '__main__':
     while True:
         email_event = generate_message(actual_date=actual_day)
 
-        print(f'Producting message @ {datetime.now()} | Message = {str(email_event)}')
-        producer.send('messages', email_event)
+        print(f'Sending email @ {datetime.now()} | Email = {str(email_event)}')
+        producer.send('emails', email_event)
+
+
+        traffic_event = generate_traffic(actual_date=actual_day)
+
+        print(f'employees_traffic @ {datetime.now()} | Traffic = {str(traffic_event)}')
+        producer.send('employees_traffic', email_event)
+
 
         time.sleep(2)
 
