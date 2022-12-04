@@ -30,10 +30,6 @@ def generate_message(actual_date) -> dict:
     }
 
 if __name__ == '__main__':
-    print(generate_message())
-
-
-
-
+    print(generate_message(1))
 
 
