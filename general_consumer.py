@@ -5,11 +5,14 @@ import json
 
 traffic_consumer = KafkaConsumer(auto_offset_reset='earliest', bootstrap_servers=['localhost:9092'],
                                  api_version=(0, 10))
-traffic_consumer.subscribe("traffic")
+
+
+traffic_consumer.subscribe("traffic4")
 print("zasubskrybowano do traffic")
 
 
 traffic_messages=0
+
 
 for traffic in traffic_consumer:
 
@@ -22,6 +25,7 @@ for traffic in traffic_consumer:
     print(value)
 
     if traffic_messages == 50:
+
         break
 
    #bledy w consumerze zmusily do usuniecia pobierania
@@ -42,7 +46,7 @@ print("emails consumer")
 email_consumer = KafkaConsumer(auto_offset_reset='earliest', bootstrap_servers=['localhost:9092'],
                                api_version=(0, 10))
 
-email_consumer.subscribe('emails')
+email_consumer.subscribe('emails2')
 print("zasubskrybowano do emails")
 
 emails_messages = 0
