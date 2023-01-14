@@ -1,3 +1,6 @@
+#-- Skrypt działający jako prodocer wiadomości dla Kafka Broker
+#-- Wykorzystuje stworzone wcześniej metody do symulowania aktywności w pewnej firmie opisanej w dokumentacji projektu
+
 import time
 import json
 import random
@@ -9,7 +12,7 @@ from generate_traffic_msg import generate_traffic
 from kafka import KafkaProducer
 
 
-# -- Messages will be serialized as JSON
+#-- Wybieramy format JSON jako serializer dla wiadomości Kafki
 def serializer(message):
     return json.dumps(message).encode('utf-8')
 
