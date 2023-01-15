@@ -1,6 +1,4 @@
 #-- przykladowe generowanie wartosci wiadomosci do wyslania na temat traffic
-
-
 import time
 import random
 import string
@@ -23,14 +21,14 @@ def generate_traffic(actual_date) -> dict:
             'user_id': random_user_id,
             'entering': 1,
             'leaving' : 0,
-            'date' : actual_date #currently an integer for presentation; use data_stamp for real life implementaion
-    }
+            'date' : actual_date
+        }
     else:
         return {
             'user_id': random_user_id,
             'entering': 0,
             'leaving': 1,
-            'date': actual_date  # currently an integer for presentation; use data_stamp for real life implementaion
+            'date': actual_date
         }
 
 

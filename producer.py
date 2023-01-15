@@ -17,28 +17,33 @@ def serializer(message):
     return json.dumps(message).encode('utf-8')
 
 
-# -- Kafka Producer
+#-- Kafka Producer
 producer1 = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
+    bootstrap_servers=['localhost:9092'], #localhost należy zmienić na IP urządzenia służącego jako kafka broker
     value_serializer=serializer
 )
 
 producer2 = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
+    bootstrap_servers=['localhost:9092'], #local host należy zmienić na IP urządzenia służącego jako kafka broker
     value_serializer=serializer
 )
 
 if __name__ == '__main__':
 
+    #Testowy iterator ograniczający liczbe wysyłanych wiadomości podczas symulowania aktywności pracowników
     actual_day = 1
     limit_actions_per_day = 0
+
     while True:
+
+
         email_event = generate_message(actual_date=actual_day)
 
         print(f'Sending email @ {datetime.now()} | Email = {str(email_event)}')
         producer1.send('emails', email_event)
         producer1.flush()
 
+        #-- Flush() zapewnia, że wszystkie wiadomości zostaną wysłane na temat do którego zasubskrybowany jest producer
 
 
         traffic_event = generate_traffic(actual_date=actual_day)
@@ -49,6 +54,9 @@ if __name__ == '__main__':
         producer2.send('traffic', traffic_event)
         producer2.flush()
 
+
+
+        #-- warunek wyjścia z pętli
         time.sleep(0.1)
 
         limit_actions_per_day += 1
